@@ -11,7 +11,7 @@ USE master;
 -- since the schemas are created in batch processing, to work on multiple sql statements "GO" Command is used, as it act as a separator
 GO
 
-IF EXISTS (SELECT 1 FROM sys.databases WHERE name = "dataWarehouse")
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'dataWarehouse')
 BEGIN
   ALTER DATABASE dataWarehouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
   DROP DATABASE dataWarehouse;
