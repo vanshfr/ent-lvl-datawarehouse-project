@@ -22,7 +22,8 @@ BEGIN
 		SET @start_time = GETDATE();
 		PRINT '>> Loading Data into Table: bronze.crm_cst_info';
 		BULK INSERT bronze.crm_cst_info
-		FROM 'C:\Users\vansh\OneDrive\Documents\code2\sql-data-warehouse-project-main\datasets\source_crm\cust_info.csv'
+		-- make sure to edit the location before execution
+		FROM '{your location}\data\source_crm\cust_info.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -38,7 +39,7 @@ BEGIN
 		SET @start_time = GETDATE();
 		PRINT '>> Loading Data into Table: bronze.crm_prd_info';
 		BULK INSERT bronze.crm_prd_info
-		FROM 'C:\Users\vansh\OneDrive\Documents\code2\sql-data-warehouse-project-main\datasets\source_crm\prd_info.csv'
+		FROM '{your location}\data\source_crm\prd_info.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -54,7 +55,7 @@ BEGIN
 		SET @start_time = GETDATE();
 		PRINT '>> Loading Data into Table: bronze.crm_sales_details';
 		BULK INSERT bronze.crm_sales_details
-		FROM 'C:\Users\vansh\OneDrive\Documents\code2\sql-data-warehouse-project-main\datasets\source_crm\sales_details.csv'
+		FROM '{your location}\data\source_crm\sales_details.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -76,7 +77,7 @@ BEGIN
 		SET @start_time = GETDATE();
 		PRINT '>> Loading Data into Table: bronze.erp_cust_az12';
 		BULK INSERT bronze.erp_cust_az12
-		FROM 'C:\Users\vansh\OneDrive\Documents\code2\sql-data-warehouse-project-main\datasets\source_erp\CUST_AZ12.csv'
+		FROM '{your location}\data\source_erp\CUST_AZ12.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -92,7 +93,7 @@ BEGIN
 		SET @start_time = GETDATE();
 		PRINT '>> Loading Data into Table: bronze.erp_loc_a101';
 		BULK INSERT bronze.erp_loc_a101
-		FROM 'C:\Users\vansh\OneDrive\Documents\code2\sql-data-warehouse-project-main\datasets\source_erp\LOC_A101.csv'
+		FROM '{your location}\data\source_erp\LOC_A101.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -108,7 +109,7 @@ BEGIN
 		SET @start_time = GETDATE();
 		PRINT '>> Loading Data into Table: bronze.erp_px_cat_g1v2';
 		BULK INSERT bronze.erp_px_cat_g1v2
-		FROM 'C:\Users\vansh\OneDrive\Documents\code2\sql-data-warehouse-project-main\datasets\source_erp\PX_CAT_G1V2.csv'
+		FROM '{your location}\data\source_erp\PX_CAT_G1V2.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -123,12 +124,12 @@ BEGIN
 	BEGIN CATCH
 		PRINT '==============================================';
 		PRINT 'SOMETHING WENT WRONG...';
-		PRINT ERROR_MESSAGE();
-		PRINT CAST(ERROR_NUMBER() AS NVARCHAR);
-		PRINT CAST(ERROR_STATE() AS NVARCHAR);
+		PRINT 'Following Error occurred -> ' + ERROR_MESSAGE();
+		PRINT 'eno. ->'+ CAST(ERROR_NUMBER() AS NVARCHAR);
+		PRINT 'error state ->' + CAST(ERROR_STATE() AS NVARCHAR);
 		PRINT '==============================================';
 	END CATCH
 END;
 
--- To test the procedure un-comment the next line and execute it
--- EXEC bronze.load_bronze;
+
+EXEC bronze.load_bronze;
