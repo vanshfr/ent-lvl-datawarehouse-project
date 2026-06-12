@@ -1,5 +1,3 @@
--- before any transformations, we need to indentify the quality issue of the existing raw 
-
 /* 
 NOTE: 
 a)	comments including the numbers inside square bracket has detailed description, which are used
